@@ -88,7 +88,7 @@ class Level
 
         // set (or unset) the owning side of the relation if necessary
         $newLevel = null === $user ? null : $this;
-        if ($user->getLevel() !== $newLevel) {
+        if ($user && $user->getLevel() !== $newLevel) {
             $user->setLevel($newLevel);
         }
 

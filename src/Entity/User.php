@@ -51,7 +51,7 @@ class User
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $sport_id;
+    private $sportId;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Level", inversedBy="user", cascade={"persist", "remove"})
@@ -147,12 +147,12 @@ class User
 
     public function getSportId(): ?int
     {
-        return $this->sport_id;
+        return $this->sportId;
     }
 
-    public function setSportId(?int $sport_id): self
+    public function setSportId(?int $sportId): self
     {
-        $this->sport_id = $sport_id;
+        $this->sportId = $sportId;
 
         return $this;
     }

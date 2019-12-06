@@ -21,12 +21,12 @@ class Advice
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $coach_id;
+    private $coachId;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $product_id;
+    private $productId;
 
     /**
      * @ORM\Column(type="string", length=400)
@@ -60,24 +60,24 @@ class Advice
 
     public function getCoachId(): ?int
     {
-        return $this->coach_id;
+        return $this->coachId;
     }
 
-    public function setCoachId(?int $coach_id): self
+    public function setCoachId(?int $coachId): self
     {
-        $this->coach_id = $coach_id;
+        $this->coachId = $coachId;
 
         return $this;
     }
 
     public function getProductId(): ?int
     {
-        return $this->product_id;
+        return $this->productId;
     }
 
-    public function setProductId(?int $product_id): self
+    public function setProductId(?int $productId): self
     {
-        $this->product_id = $product_id;
+        $this->productId = $productId;
 
         return $this;
     }
