@@ -16,30 +16,36 @@ class Coach2StoreApi
         $this->apiKey = $apiKey;
     }
 
-    public function getProductsByBrand($brand)
+    private function client()
     {
-        $client = HttpClient::create(['headers' => [
+        return HttpClient::create(['headers' => [
             'api_key' => $this->apiKey
         ]]);
+    }
 
-        $response = $client->request('GET', 'https://dev-api.coach2store.com/api/search?criteria=velo&brand=' . $brand);
+    public function getProductsByBrand($criteria)
+    {
+        $client = $this->client();
+
+        $response = $client->request('GET', 'https://dev-api.coach2store.com/api/search?criteria=' . $criteria);
+
         $content = $response->toArray();
+        $products = $content['result']['facets'];
 
-        var_dump($content);
-        $products = $content['result']['hits']['hit'];
-
-        foreach ($products as $product ) {
-            var_dump($product['fields']['brand']);
+        foreach ($products as $product) {
+            $product['buckets'];
         }
-
         return $products;
     }
 
-//    public function getSupplier()
-//    {
-//        $client = HttpClient::create(['headers' => [
-//            'api_key' => $this->apiKey
-//        ]]);
-//
-//    }
+    public function getProductsBySupplier($criteria)
+    {
+        $client = $this->client();
+        $response = $client->request('GET', 'https://dev-api.coach2store.com/api/search?criteria=' . $criteria);
+
+        $content = $response->toArray();
+        $products = $content['result']['facets']['supplier_name'];
+
+        return $products;
+    }
 }

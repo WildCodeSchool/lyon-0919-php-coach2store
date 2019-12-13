@@ -10,16 +10,30 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductController extends AbstractController
 {
     /**
-     * @Route("/product", name="product")
+     * @Route("/product/brand", name="product_brand")
      * @param Coach2StoreApi $apiService
      * @return Response
      */
-    public function index(Coach2StoreApi $apiService): Response
+    public function showBrand(Coach2StoreApi $apiService): Response
     {
-        $productsByBrand = $apiService->getProductsByBrand('PRO');
+        $productsByBrand = $apiService->getProductsByBrand('vélo');
 
-        return $this->render('product/index.html.twig', [
+        return $this->render('product/brand.html.twig', [
             'productsByBrand' => $productsByBrand,
+        ]);
+    }
+
+    /**
+     * @Route("/product/supplier", name="product_supplier")
+     * @param Coach2StoreApi $apiService
+     * @return Response
+     */
+    public function showSupplier(Coach2StoreApi $apiService): Response
+    {
+        $productsBySupplier = $apiService->getProductsBySupplier('tennis');
+
+        return $this->render('product/supplier.html.twig', [
+            'productsBySupplier' => $productsBySupplier,
         ]);
     }
 }
