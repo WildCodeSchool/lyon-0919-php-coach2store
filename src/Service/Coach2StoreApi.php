@@ -1,11 +1,8 @@
 <?php
 
-
 namespace App\Service;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpClient\HttpClient;
-
 
 class Coach2StoreApi
 {
