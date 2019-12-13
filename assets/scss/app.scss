@@ -1,4 +1,31 @@
-@import "vars";
 @import "~bootstrap/scss/bootstrap";
+// the ~ allows you to reference things in node_modules
+@import "~bootstrap/scss/bootstrap";
+@import "vars";
 
+/*! Search Filter */
+.text-filters {
+  text-transform: uppercase;
+  font-size: 12px;
+}
 
+.text-brands {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bolder;
+  color: #ea8b2e;
+}
+
+.text-promo, .text-promo:hover {
+  text-transform: uppercase;
+  font-size: 26px;
+  font-weight: bolder;
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #ea8b2e;
+}
+
+.text-small, .text-small:hover {
+  color: #000000;
+  text-decoration: none;
+}
