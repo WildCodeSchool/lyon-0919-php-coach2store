@@ -1,4 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
+// the ~ allows you to reference things in node_modules
+@import "~bootstrap/scss/bootstrap";
 @import "vars";
 
 /*! Search Filter */
@@ -27,6 +29,3 @@
   color: #000000;
   text-decoration: none;
 }
-
-
-
