@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>Le catalogue des produits par <strong>fournisseur :</strong></h2>
+    <ul>
+        {% for productBySupplier in productsBySupplier %}
+            {% for supplier in productBySupplier %}
+                <li>{{ supplier.value }}</li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+{% endblock %}
