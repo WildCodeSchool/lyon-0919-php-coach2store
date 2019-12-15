@@ -21,10 +21,12 @@ class CatalogController extends AbstractController
     {
         $productsByBrand = $apiService->getProductsByBrand('vélo');
         $productsBySupplier = $apiService->getProductsBySupplier('tennis');
+        $productsTop = $apiService->getProductsTop();
 
         return $this->render('catalog/index.html.twig', [
             'productsByBrand' => $productsByBrand,
             'productsBySupplier' => $productsBySupplier,
+            'productsTop' => $productsTop,
         ]);
     }
 }

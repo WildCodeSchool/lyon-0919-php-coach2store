@@ -26,8 +26,8 @@ class Coach2StoreApi
 
         $response = $client->request('GET', 'https://dev-api.coach2store.com/api/search?criteria=' . $criteria);
 
-        $content = $response->toArray();
-        $products = $content['result']['facets'];
+        $contents = $response->toArray();
+        $products = $contents['result']['facets'];
 
         foreach ($products as $product) {
             $product['buckets'];
@@ -40,9 +40,24 @@ class Coach2StoreApi
         $client = $this->client();
         $response = $client->request('GET', 'https://dev-api.coach2store.com/api/search?criteria=' . $criteria);
 
-        $content = $response->toArray();
-        $products = $content['result']['facets']['supplier_name'];
+        $contents = $response->toArray();
+        $products = $contents['result']['facets']['supplier_name'];
 
+        return $products;
+    }
+
+    public function getProductsTop()
+    {
+        $client = $this->client();
+        $response = $client->request('GET', 'https://dev-api.coach2store.com/api/top_products');
+
+        $products = $response->toArray();
+
+        foreach ($products as $result) {
+            $result['display_name'];
+            $result['display_price'];
+            $result['description'];
+        }
         return $products;
     }
 }
