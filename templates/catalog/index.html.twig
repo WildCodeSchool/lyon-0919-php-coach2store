@@ -10,17 +10,26 @@
                         {% for product in productsTop %}
                             <div class="col-4">
                                 <div class="card mt-3 mb-5">
-                                    <img src="http://via.placeholder.com/150x100" class="card-img-top" alt="...">
+                                    {% for urlImage in product.url_image %}
+                                        <img src="{{ urlImage }}" class="card-img-top" alt="...">
+                                    {% endfor %}
                                     <div class="card-body">
+                                        <p class="card-text">Top {{ product.ranking }}</p>
                                         {% for name in product.display_name %}
                                             <h5 class="card-title">{{ name }}</h5>
                                         {% endfor %}
-                                        {% for description in product.description%}
+                                        {% for description in product.description %}
                                             <p class="card-text">{{ description }}...</p>
                                         {% endfor %}
                                         <ul class="list-group list-group-flush">
                                             {% for price in product.display_price %}
                                                 <li class="list-group-item">{{ price }}</li>
+                                            {% endfor %}
+                                            {% for supplierName in product.supplier_name %}
+                                                <li class="list-group-item">{{ supplierName }}</li>
+                                            {% endfor %}
+                                            {% for urlProduct in product.url_product %}
+                                                <li class="list-group-item"><a href="{{ urlProduct }}">Acceder au produit</a></li>
                                             {% endfor %}
                                         </ul>
                                     </div>
