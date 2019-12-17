@@ -1,22 +1,35 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-    {% include 'catalog/filter.html.twig' %}
-
     <div class="container-fluid">
-        {% for product in productsTop %}
-        <div class="card-deck">
-                <div class="card">
-                    <img src="http://via.placeholder.com/150x100" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
+        <div class="d-flex flex-row bd-highlight mb-3">
+            <div class="row">
+                <div class="col">
+                    {% include 'catalog/filter.html.twig' %}
+                    <div class="card-deck">
+                        {% for product in productsTop %}
+                            <div class="col-4">
+                                <div class="card mt-3 mb-5">
+                                    <img src="http://via.placeholder.com/150x100" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        {% for name in product.display_name %}
+                                            <h5 class="card-title">{{ name }}</h5>
+                                        {% endfor %}
+                                        {% for description in product.description%}
+                                            <p class="card-text">{{ description }}...</p>
+                                        {% endfor %}
+                                        <ul class="list-group list-group-flush">
+                                            {% for price in product.display_price %}
+                                                <li class="list-group-item">{{ price }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
-            {% endfor %}
+            </div>
         </div>
     </div>
-
 {% endblock %}

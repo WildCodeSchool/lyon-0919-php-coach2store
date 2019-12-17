@@ -29,9 +29,6 @@ class Coach2StoreApi
         $contents = $response->toArray();
         $products = $contents['result']['facets'];
 
-        foreach ($products as $product) {
-            $product['buckets'];
-        }
         return $products;
     }
 
@@ -53,11 +50,6 @@ class Coach2StoreApi
 
         $products = $response->toArray();
 
-        foreach ($products as $result) {
-            $result['display_name'];
-            $result['display_price'];
-            $result['description'];
-        }
         return $products;
     }
 }
