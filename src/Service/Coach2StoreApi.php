@@ -1,11 +1,8 @@
 <?php
 
-
 namespace App\Service;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpClient\HttpClient;
-
 
 class Coach2StoreApi
 {
@@ -29,12 +26,9 @@ class Coach2StoreApi
 
         $response = $client->request('GET', 'https://dev-api.coach2store.com/api/search?criteria=' . $criteria);
 
-        $content = $response->toArray();
-        $products = $content['result']['facets'];
+        $contents = $response->toArray();
+        $products = $contents['result']['facets'];
 
-        foreach ($products as $product) {
-            $product['buckets'];
-        }
         return $products;
     }
 
@@ -43,8 +37,18 @@ class Coach2StoreApi
         $client = $this->client();
         $response = $client->request('GET', 'https://dev-api.coach2store.com/api/search?criteria=' . $criteria);
 
-        $content = $response->toArray();
-        $products = $content['result']['facets']['supplier_name'];
+        $contents = $response->toArray();
+        $products = $contents['result']['facets']['supplier_name'];
+
+        return $products;
+    }
+
+    public function getProductsTop()
+    {
+        $client = $this->client();
+        $response = $client->request('GET', 'https://dev-api.coach2store.com/api/top_products');
+
+        $products = $response->toArray();
 
         return $products;
     }

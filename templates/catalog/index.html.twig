@@ -1,94 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CatalogController!{% endblock %}
-
 {% block body %}
-
-    <div class="container-fluid mt-3">
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" style ="color: orangered" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-danger my-2 my-sm-0"type="submit">Search</button>
-        </form>
-    </div>
-
-
-    <div class="container-fluid card-group mt-5" style="text-align: center">
-        <div class="card mr-3">
-            <img class="card-img-top" src="https://via.placeholder.com/150X90C/O https://placeholder.com/"
-                 alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This content is a little bit longer.</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-        </div>
-        <div class="card mr-3">
-            <img class="card-img-top" src="https://via.placeholder.com/150X90C/O https://placeholder.com/"
-                 alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
+    <div class="container-fluid">
+        <div class="d-flex flex-row bd-highlight mb-3">
+            <div class="row">
+                <div class="col">
+                    {% include 'catalog/filter.html.twig' %}
+                    <div class="card-deck">
+                        {% for product in productsTop %}
+                            <div class="col-4">
+                                <div class="card mt-3 mb-5">
+                                    <img src="http://via.placeholder.com/150x100" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        {% for name in product.display_name %}
+                                            <h5 class="card-title">{{ name }}</h5>
+                                        {% endfor %}
+                                        {% for description in product.description%}
+                                            <p class="card-text">{{ description }}...</p>
+                                        {% endfor %}
+                                        <ul class="list-group list-group-flush">
+                                            {% for price in product.display_price %}
+                                                <li class="list-group-item">{{ price }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="card mr-3">
-            <img class="card-img-top" src="https://via.placeholder.com/150X90C/O https://placeholder.com/"
-                 alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This card has even longer content than the first to show that equal height action.</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-        </div>
-    </div>
-
-    <div class=" container-fluid card-group mt-5" style="text-align: center">
-        <div class="card mr-3">
-            <img class="card-img-top" src="https://via.placeholder.com/150X90C/O https://placeholder.com/"
-                 alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This content is a little bit longer.</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-        </div>
-        <div class="card mr-3">
-            <img class="card-img-top" src="https://via.placeholder.com/150X90C/O https://placeholder.com/"
-                 alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-        </div>
-        <div class="card mr-3">
-            <img class="card-img-top" src="https://via.placeholder.com/150X90C/O https://placeholder.com/"
-                 alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This card has even longer content than the first to show that equal height action.</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-        </div>
-    </div>
-
-    <div class="container-fluid mt-5" style="text-align: center">
-        <button type="button" class="btn btn-lg btn-outline-danger">VOIR PLUS DE PRODUITS</button>
     </div>
 {% endblock %}
