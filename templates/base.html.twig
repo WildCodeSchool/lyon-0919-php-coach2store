@@ -8,6 +8,15 @@
         {% endblock %}
     </head>
     <body>
+    <header>
+        <nav class="pt-0 pb-0 navbar navbar-light bg-light">
+            <a class="navbar-brand"><img class="w-50" src="/images/c2s.png"></a>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Rechercher..." aria-label="Search">
+                <button class="btn btn-outline-warning warning my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </nav>
+    </header>
         {% block body %}{% endblock %}
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
