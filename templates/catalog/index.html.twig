@@ -1,43 +1,44 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container-fluid">
-        <div class="d-flex flex-row bd-highlight mb-3">
+    <div class="container-fluid mt-4">
+        <div class="d-flex">
             <div class="row">
-                <div class="col">
-                    {% include 'catalog/filter.html.twig' %}
-                    <div class="card-deck">
-                        {% for product in productsTop %}
-                            <div class="col-4">
-                                <div class="main-card-product card mt-3 mb-5 w-75">
-                                    {% for urlImage in product.url_image %}
-                                        <img src="{{ urlImage }}" class="w-auto h-auto img-fluid card-img-top img-thumbnail" alt="product top">
+                {% include 'catalog/filter.html.twig' %}
+                <div class="d-flex card-deck mt-4 pl-3" style="width: 80%">
+                    {% for product in productsTop %}
+                        <div class="col-4">
+                            <div class="main-card-product card mt-3 mb-5 w-75">
+                                {% for urlImage in product.url_image %}
+                                    <img src="{{ urlImage }}"
+                                         class="w-auto img-fluid card-img-top img-thumbnail"
+                                         alt="product top">
+                                {% endfor %}
+                                <div class="card-body">
+                                    {% for name in product.display_name %}
+                                        <h5 class="card-title">{{ name | slice(0, 25) | upper }}...</h5>
                                     {% endfor %}
-                                    <div class="card-body">
-                                        {% for name in product.display_name %}
-                                            <h5 class="card-title">{{ name | slice(0, 25) | upper }}...</h5>
+                                    <p class="card-subtitle mt-1 mb-2"><i class="fas fa-arrow-up"></i>
+                                        Top {{ product.ranking }}</p>
+                                    {% for description in product.description %}
+                                        <p class="card-text">{{ description | slice(0, 100) }}...</p>
+                                    {% endfor %}
+                                    <ul class="list-group list-group-flush">
+                                        {% for price in product.display_price %}
+                                            <li class="list-group-item">{{ price }}</li>
                                         {% endfor %}
-                                        <p class="card-subtitle mt-1 mb-2"><i class="fas fa-arrow-up"></i> Top {{ product.ranking }}</p>
-                                        {% for description in product.description %}
-                                            <p class="card-text">{{ description | slice(0, 100) }}...</p>
+                                        {% for supplierName in product.supplier_name %}
+                                            <li class="list-group-item">{{ supplierName }}</li>
                                         {% endfor %}
-                                        <ul class="list-group list-group-flush">
-                                            {% for price in product.display_price %}
-                                                <li class="list-group-item">{{ price }}</li>
-                                            {% endfor %}
-                                            {% for supplierName in product.supplier_name %}
-                                                <li class="list-group-item">{{ supplierName }}</li>
-                                            {% endfor %}
-                                            {% for urlProduct in product.url_product %}
-                                                <li class="list-group-item"><a href="{{ urlProduct }}">Acceder au
-                                                        produit</a></li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
+                                        {% for urlProduct in product.url_product %}
+                                            <li class="list-group-item"><a href="{{ urlProduct }}">Acceder au
+                                                    produit</a></li>
+                                        {% endfor %}
+                                    </ul>
                                 </div>
                             </div>
-                        {% endfor %}
-                    </div>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
