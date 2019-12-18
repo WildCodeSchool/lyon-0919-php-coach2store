@@ -31,6 +31,15 @@ $primary: #ff6a00;
   text-decoration: none;
 }
 
+.list-filter {
+  font-size: 12px;
+}
+
+.list-filter:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
 /*! Catalog card product*/
 .main-card-product {
   text-align: center;

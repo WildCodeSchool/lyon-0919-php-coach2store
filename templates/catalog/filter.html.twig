@@ -11,16 +11,15 @@
                         <div class="d-flex flex-column">
                             {% for productByBrand in productsByBrand %}
                                 {% for brand in productByBrand.buckets | slice (1, 2) %}
-                                    <label>
+                                    <label class="list-filter">
                                         <input type="checkbox"> {{ brand.value }}
                                     </label>
-
                                 {% endfor %}
                             {% endfor %}
                         </div>
                     </div>
                 </div>
-                <small class="text-muted"><a class="text-small" href="#">Voir plus</a></small>
+                <small class="text-muted"><a class="text-small list-filter" href="#">Voir plus</a></small>
                 <hr>
             </div>
         </div>
@@ -40,7 +39,7 @@
                         <div class="d-flex flex-column">
                             {% for productBySupplier in productsBySupplier %}
                                 {% for supplier in productBySupplier | slice (6) %}
-                                    <label>
+                                    <label class="list-filter">
                                         <input type="checkbox"> {{ supplier.value }}
                                     </label>
                                 {% endfor %}
@@ -48,7 +47,7 @@
                         </div>
                     </div>
                 </div>
-                <small class="text-muted"><a class="text-small" href="#">Voir plus</a></small>
+                <small class="text-muted"><a class="text-small list-filter" href="#">Voir plus</a></small>
                 <hr>
             </div>
         </div>
