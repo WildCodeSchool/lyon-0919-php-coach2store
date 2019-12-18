@@ -28,7 +28,9 @@
                                             {% for pricePromo in product.promo %}
                                                 {% if pricePromo != 0 %}
                                                     <li class="list-group-item">
-                                                        <del class="price">{{ price }} €</del><span class="price-promo"> {{ pricePromo }} €</span></li>
+                                                        {% for priceNoRebate in product.price_no_rebate %}
+                                                        <del class="price">{{ priceNoRebate }} €</del><span class="price-promo"> {{ price }} €</span></li>
+                                                        {% endfor %}
                                                 {% else %}
                                                     <li class="list-group-item">{{ price }} €</li>
                                                 {% endif %}
