@@ -52,10 +52,18 @@ $primary: #ff6a00;
     font-size: 14px;
   }
   li:first-child {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
   }
   li:last-child {
     font-weight: 600;
+  }
+  .price {
+    font-size: 13px;
+  }
+  .price-promo {
+    font-size: 16px;
+    font-weight: bold;
+    color: #e30f1b;
   }
 }

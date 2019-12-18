@@ -24,8 +24,15 @@
                                         <p class="card-text">{{ description | slice(0, 100) }}...</p>
                                     {% endfor %}
                                     <ul class="list-group list-group-flush">
-                                        {% for price in product.display_price %}
-                                            <li class="list-group-item">{{ price }}</li>
+                                        {% for price in product.price %}
+                                            {% for pricePromo in product.promo %}
+                                                {% if pricePromo != 0 %}
+                                                    <li class="list-group-item">
+                                                        <del class="price">{{ price }} €</del><span class="price-promo"> {{ pricePromo }} €</span></li>
+                                                {% else %}
+                                                    <li class="list-group-item">{{ price }} €</li>
+                                                {% endif %}
+                                            {% endfor %}
                                         {% endfor %}
                                         {% for supplierName in product.supplier_name %}
                                             <li class="list-group-item">{{ supplierName }}</li>
