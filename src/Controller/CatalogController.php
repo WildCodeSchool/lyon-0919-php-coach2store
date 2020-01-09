@@ -25,6 +25,7 @@ class CatalogController extends AbstractController
         $brands = [];
         $suppliers = [];
         $products = $apiService->getProductsTop();
+
         $form = $this->createForm(SearchProductsType::class, null, [
             'method' => 'GET',
         ]);

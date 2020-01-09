@@ -36,6 +36,7 @@
             {{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
             {{ form_widget(form.search, {'attr': {'class': 'form-control mr-sm-2'}}) }}
             <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+{#            {% set formCheck = form.vars.value.search %}#}
             {{ form_end(form) }}
         </div>
     </nav>
