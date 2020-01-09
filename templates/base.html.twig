@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Coach 2 Store{% endblock %}</title>
@@ -33,11 +33,10 @@
                     <a class="nav-link" href="#"><i class="fas fa-file-alt mr-1"></i>Inscription</a>
                 </li>
             </ul>
-            <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Rechercher..." aria-label="Search">
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i>
-                </button>
-            </form>
+            {{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
+            {{ form_widget(form.search, {'attr': {'class': 'form-control mr-sm-2'}}) }}
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+            {{ form_end(form) }}
         </div>
     </nav>
 </header>
