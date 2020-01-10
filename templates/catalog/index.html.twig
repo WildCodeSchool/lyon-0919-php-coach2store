@@ -7,14 +7,14 @@
                 {% if form.vars.value.search is defined %}
                     {% include 'catalog/filter.html.twig' %}
                 {% endif %}
-                <div class="d-flex card-deck mt-4 pl-3" style="width: 80%">
+                <div class="d-flex card-deck mt-4 pl-3 mx-auto" style="width: 80%">
                     {% for product in productsTop %}
                         <div class="col-4">
                             <div class="main-card-product card mt-5 mb-5 w-75">
                                 {% if product.url_image is defined %}
                                     {% for urlImage in product.url_image %}
                                         <img src="{{ urlImage }}"
-                                             class="w-auto img-fluid card-img-top img-thumbnail"
+                                             class="w-auto img-fluid card-img-catalog img-thumbnail"
                                              alt="product top">
                                     {% endfor %}
                                 {% endif %}
