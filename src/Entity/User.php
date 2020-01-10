@@ -5,11 +5,13 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -40,8 +42,15 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min="8", minMessage="Votre mot de passe doit contenir mininum 8 caractères")
+     *
      */
     private $password;
+
+    /**
+     * @Assert\EqualTo(propertyPath="password", message="Vous n'avez pas comfirmé le même mot de passe")
+     */
+    public $confirm_password;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -62,6 +71,11 @@ class User
      * @ORM\OneToMany(targetEntity="App\Entity\Advice", mappedBy="user")
      */
     private $advice;
+
+    /**
+     * @ORM\Column(type="string", length=90)
+     */
+    private $username;
 
     public function __construct()
     {
@@ -196,6 +210,45 @@ class User
                 $advice->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getUsername()
+    {
+        // TODO: Implement getUsername() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
 
         return $this;
     }

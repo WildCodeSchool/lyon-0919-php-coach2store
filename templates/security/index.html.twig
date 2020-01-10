@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello User!{% endblock %}
+
+{% block body %}
+    <style>
+
+
+    </style>
+
+    <div class="container">
+
+        <!-- Default form register -->
+        <form class="text-center border border-light p-5" action="#!">
+
+            <p class="h4 mb-4">CREER UN COMPTE</p>
+            <p>Saisissez vos coordonnées ci dessous et suivez le processus pour créer un nouveau compte avec
+                Coach2store.</p>
+
+            <div class="form-row mb-4">
+                <div class="col mb-4 offset-3" >
+                    <!-- Username -->
+                    {{ form(form.username, {'attr': {'placeholder': "Nom d'utilisateur", 'id': 'defaultRegisterFormFirstName' } })}}
+                </div>
+
+                    <!-- Username -->
+                    {{ form_widget(form.username, {'attr': {'placeholder': "Nom d'utilisateur", 'id': 'defaultRegisterFormFirstName' } })}}
+
+
+
+
+                {{ form_widget(form.email, {'attr': {'id': 'defaultRegisterFormEmail'} })}}
+                <!-- E-mail -->
+
+            <!-- Password -->
+            {{ form_widget(form.password, {'attr': {'id': 'defaultRegisterFormPassword', 'class': 'form-control', 'aria-describedby': 'defaultRegisterFormPasswordHelpBlock' } })}}
+
+            <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                At least 8 characters and 1 digit
+            </small>
+
+
+            <!-- Sign up button -->
+            <button class="btn btn-info my-4 btn-block" type="submit">Sign in</button>
+
+            <!-- Social register -->
+            <p>or sign up with:</p>
+
+            <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
+            <a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
+            <a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
+            <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a>
+
+            <hr>
+
+            <!-- Terms of service -->
+            <p>By clicking
+                <em>Sign up</em> you agree to our
+                <a href="" target="_blank">terms of service</a>
+
+        </form>
+        <!-- Default form register -->
+
+        <!-- 2eme form -->
+        <form class="text-center border border-light p-5" action="#">
+            <h1>CREER UN COMPTE</h1>
+            <p>Saisissez vos coordonnées ci dessous et suivez le processus pour créer un nouveau compte avec
+                Coach2store.</p>
+
+
+
+                {{ form_start(form) }}
+            <div class="form-row mb-4">
+                <div class="col" id="defaultRegisterFormFirstName" class="form-control">
+
+                </div>
+
+                <div class="col" id="defaultRegisterFormLastName" class="form-control">
+                
+                </div>
+
+                <div class="col" id="defaultRegisterFormEmail" class="form-control mb-4">
+                    {{ form_row(form.email,{'label': 'Email', 'attr': {'placeholder': 'Votre email'}}) }}
+                </div>
+
+
+                {{ form_row(form.password,{'label': 'Mot de passe', 'attr': {'placeholder': 'Votre mot de passe'}}) }}
+                {{ form_row(form.confirm_password,{'label': 'Confirmation du mot de passe', 'attr': {'placeholder': 'Répétez votre mot de passe'}}) }}
+                <button type="submit" class="btn btn-info my-4 btn-block">Inscription</button>
+            </div>
+                {{ form_end(form) }}
+
+
+        </form>
+    </div>
+
+
+{% endblock %}
