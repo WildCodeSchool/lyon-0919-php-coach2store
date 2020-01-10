@@ -1,9 +1,87 @@
+// Main colors custom bootstrap
+$primary: #ff6a00;
+
+// the ~ allows you to reference things in node_modules
+@import "~bootstrap/scss/bootstrap";
+
+// the ~ allows you to reference things in node_modules
 @import "vars";
 
-body {
-    background-color: $secondary-color;
+/*! Search Filter */
+.text-filters {
+  text-transform: uppercase;
+  font-size: 12px;
 }
 
-a {
-    color: $warm-color;
+.text-brands {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bolder;
+}
+
+.text-promo, .text-promo:hover {
+  text-transform: uppercase;
+  font-size: 26px;
+  font-weight: bolder;
+  text-decoration: none;
+}
+
+.text-small, .text-small:hover {
+  color: #000000;
+  text-decoration: none;
+}
+
+.list-filter {
+  font-size: 12px;
+}
+
+.list-filter:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.line-catalog, .line-catalog:hover {
+  text-decoration: none;
+  font-size: 14px;
+}
+
+/*! Catalog card product*/
+.main-card-product {
+  text-align: center;
+  font-family: sans-serif;
+
+  h5 {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  li:first-child {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  li:last-child {
+    font-weight: 600;
+  }
+
+  .price {
+    font-size: 13px;
+  }
+
+  .price-promo {
+    font-size: 16px;
+    font-weight: bold;
+    color: #e30f1b;
+  }
+
+  .card-img-catalog {
+    width: 100%;
+    height: 20vw;
+    object-fit: cover;
+  }
+
 }

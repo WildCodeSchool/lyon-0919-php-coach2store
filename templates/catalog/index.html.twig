@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid mt-4">
+        <div class="d-flex">
+            <div class="row">
+                {% if form.vars.value.search is defined %}
+                    {% include 'catalog/filter.html.twig' %}
+                {% endif %}
+                <div class="d-flex card-deck mt-4 pl-3 mx-auto" style="width: 80%">
+                    {% for product in productsTop %}
+                        <div class="col-4">
+                            <div class="main-card-product card mt-5 mb-5 w-75">
+                                {% if product.url_image is defined %}
+                                    {% for urlImage in product.url_image %}
+                                        <img src="{{ urlImage }}"
+                                             class="w-auto img-fluid card-img-catalog img-thumbnail"
+                                             alt="product top">
+                                    {% endfor %}
+                                {% endif %}
+                                <div class="card-body">
+                                    {% for name in product.display_name %}
+                                        <h5 class="card-title">{{ name | slice(0, 25) | upper }}...</h5>
+                                    {% endfor %}
+                                    {% if product.ranking is defined %}
+                                        <p class="card-subtitle mt-1 mb-2"><i class="fas fa-arrow-up"></i>
+                                            Top {{ product.ranking }}</p>
+                                    {% endif %}
+                                    {% for description in product.description %}
+                                        <p class="card-text">{{ description | slice(0, 100) }}...</p>
+                                    {% endfor %}
+                                    <ul class="list-group list-group-flush">
+                                        {% for price in product.price %}
+                                            {% for pricePromo in product.promo %}
+                                                {% if pricePromo != 0 %}
+                                                    <li class="list-group-item">
+                                                    {% for priceNoRebate in product.price_no_rebate %}
+                                                        <del class="price">{{ priceNoRebate }} €</del><span
+                                                            class="price-promo"> {{ price }} €</span></li>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <li class="list-group-item">{{ price }} €</li>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endfor %}
+                                        {% for supplierName in product.supplier_name %}
+                                            <li class="list-group-item">{{ supplierName }}</li>
+                                        {% endfor %}
+                                        {% for urlProduct in product.url_product %}
+                                            <li class="list-group-item"><a href="{{ urlProduct }}">Acceder au
+                                                    produit</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
