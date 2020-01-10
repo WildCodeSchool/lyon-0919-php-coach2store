@@ -10,12 +10,10 @@
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <div class="d-flex flex-column">
-                            {% for productByBrand in productsByBrand %}
-                                {% for brand in productByBrand.buckets | slice (1, 2) %}
-                                    <label class="list-filter">
-                                        <input type="checkbox"> {{ brand.value }}
-                                    </label>
-                                {% endfor %}
+                            {% for brand in brands %}
+                                <label class="list-filter">
+                                    <input type="checkbox"> {{ brand.value }}
+                                </label>
                             {% endfor %}
                         </div>
                     </div>
@@ -38,12 +36,10 @@
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <div class="d-flex flex-column">
-                            {% for productBySupplier in productsBySupplier %}
-                                {% for supplier in productBySupplier | slice (6) %}
-                                    <label class="list-filter">
-                                        <input type="checkbox"> {{ supplier.value }}
-                                    </label>
-                                {% endfor %}
+                            {% for supplier in suppliers %}
+                                <label class="list-filter">
+                                    <input type="checkbox"> {{ supplier.value }}
+                                </label>
                             {% endfor %}
                         </div>
                     </div>

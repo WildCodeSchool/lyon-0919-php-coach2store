@@ -20,25 +20,14 @@ class Coach2StoreApi
         ]]);
     }
 
-    public function getProductsByBrand($criteria)
+    public function getProductsByCriteria(string $criteria)
     {
         $client = $this->client();
 
         $response = $client->request('GET', 'https://dev-api.coach2store.com/api/search?criteria=' . $criteria);
 
         $contents = $response->toArray();
-        $products = $contents['result']['facets'];
-
-        return $products;
-    }
-
-    public function getProductsBySupplier($criteria)
-    {
-        $client = $this->client();
-        $response = $client->request('GET', 'https://dev-api.coach2store.com/api/search?criteria=' . $criteria);
-
-        $contents = $response->toArray();
-        $products = $contents['result']['facets']['supplier_name'];
+        $products = $contents['result'];
 
         return $products;
     }
@@ -51,5 +40,10 @@ class Coach2StoreApi
         $products = $response->toArray();
 
         return $products;
+    }
+
+    public static function simplify($product)
+    {
+        return $product['fields'];
     }
 }
