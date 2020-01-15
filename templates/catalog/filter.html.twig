@@ -5,47 +5,25 @@
         {# Brand block #}
         <div class="card">
             <div class="card-header">
-                <p class="text-brands text-primary">Marques</p>
-                <hr>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <div class="d-flex flex-column">
-                            {% for brand in brands %}
-                                <label class="list-filter">
-                                    <input type="checkbox"> {{ brand.value }}
-                                </label>
-                            {% endfor %}
+                            <p class="text-brands text-primary">Marques</p>
+                            <div class="list-filter">
+                                {{ form_start(filter) }}
+                                {{ form_widget(filter.brands, {'attr': { 'class': 'form-control select-filter' }}) }}
+                                <hr>
+                                <a class="mx-auto mt-4 mb-4 text-promo text-primary" href="#">PROMOTIONS !</a>
+                                <hr>
+                                <p class="text-brands text-primary">Fournisseurs</p>
+                                {{ form_widget(filter.suppliers, {'attr': { 'class': 'form-control select-filter' }}) }}
+                                <hr>
+                                <button type="submit" class="btn btn-primary btn-sm">Rechercher</button>
+                                {{ form_end(filter) }}
+                            </div>
                         </div>
                     </div>
                 </div>
-                <small class="text-muted"><a class="text-small list-filter" href="#">Voir plus</a></small>
-                <hr>
-            </div>
-        </div>
-        {# Promotion block #}
-        <div class="card">
-            <hr>
-            <a class="mx-auto mt-4 mb-4 text-promo text-primary" href="#">PROMOTIONS !</a>
-            <hr>
-        </div>
-        {# Supplier block #}
-        <div class="card">
-            <div class="card-header">
-                <p class="text-brands text-primary">Fournisseurs</p>
-                <hr>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <div class="d-flex flex-column">
-                            {% for supplier in suppliers %}
-                                <label class="list-filter">
-                                    <input type="checkbox"> {{ supplier.value }}
-                                </label>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-                <small class="text-muted"><a class="text-small list-filter" href="#">Voir plus</a></small>
-                <hr>
             </div>
         </div>
     </div>

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\FilterProductsType;
 use App\Form\SearchProductsType;
 use App\Service\Coach2StoreApi;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,30 +23,57 @@ class CatalogController extends AbstractController
      */
     public function index(Coach2StoreApi $apiService, Request $request): Response
     {
+        $criteria = null;
+        if ($searchParam = $request->query->get('search_products')) {
+            $criteria = $searchParam['searchBar'];
+        }
+        $searchBar = $this->createForm(SearchProductsType::class, ['searchBar' => $criteria], [
+            'method' => 'GET',
+        ]);
+        $searchBar->handleRequest($request);
         $brands = [];
         $suppliers = [];
         $products = $apiService->getProductsTop();
 
-        $form = $this->createForm(SearchProductsType::class, null, [
-            'method' => 'GET',
-        ]);
-        $form->handleRequest($request);
+        if ($searchBar->isSubmitted() && $searchBar->isValid()) {
+            $data = $searchBar->getData();
+            $criteria = $data['searchBar'];
+        }
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-            $criteria = $data['search'];
+        if ($criteria) {
             $result = $apiService->getProductsByCriteria($criteria);
+
             $products = $result['hits']['hit'];
-            $products = array_map('App\Service\Coach2StoreApi::simplify', $products);
+            $products = array_map('App\Service\Coach2StoreApi::simplifyProduct', $products);
+
             $brands = $result['facets']['brand']['buckets'];
+            $brands = array_map('App\Service\Coach2StoreApi::simplifyBrand', $brands);
+
             $suppliers = $result['facets']['supplier_name']['buckets'];
+            $suppliers = array_map('App\Service\Coach2StoreApi::simplifySupplier', $suppliers);
+        }
+
+        $filter = $this->createForm(FilterProductsType::class, null, [
+            'method' => 'POST',
+            'brands' => $brands,
+            'suppliers' => $suppliers,
+        ]);
+
+        $filter->handleRequest($request);
+
+        if ($filter->isSubmitted() && $filter->isValid()) {
+            $data = $filter->getData();
+            $selectBrands = $data['brands'];
+            $selectSuppliers = $data['suppliers'];
+            $result = $apiService->getProductsByCriteria($criteria, $selectBrands, $selectSuppliers);
+            $products = $result['hits']['hit'];
+            $products = array_map('App\Service\Coach2StoreApi::simplifyProduct', $products);
         }
 
         return $this->render('catalog/index.html.twig', [
-            'brands' => $brands,
-            'suppliers' => $suppliers,
             'productsTop' => $products,
-            'form' => $form->createView(),
-        ]);
+            'searchBar' => $searchBar->createView(),
+            'filter' => $filter->createView(),
+           ]);
     }
 }

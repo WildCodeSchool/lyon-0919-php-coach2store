@@ -4,7 +4,7 @@
     <div class="container-fluid mt-4">
         <div class="d-flex">
             <div class="row">
-                {% if form.vars.value.search is defined %}
+                {% if searchBar.vars.value.searchBar is not null %}
                     {% include 'catalog/filter.html.twig' %}
                 {% endif %}
                 <div class="d-flex card-deck mt-4 pl-3 mx-auto" style="width: 80%">
