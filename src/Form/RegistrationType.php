@@ -23,29 +23,28 @@ class RegistrationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', TextType::class,['constraints'=>[
+            ->add('username', TextType::class, ['constraints' => [
                 new NotBlank(),
-                new Length(['min' => 3, 'max'=>20, 'minMessage' => 'Cette valeur est trop courte. Il doit y avoir 3 caractères ou plus.']),
-            ]] )
-            ->add('email', EmailType::class,['constraints'=>[
+                new Length(['min' => 3, 'max' => 20, 'minMessage' => 'Cette valeur est trop courte. Il doit y avoir 3 caractères ou plus.']),
+            ]])
+            ->add('email', EmailType::class, ['constraints' => [
                 new NotBlank(),
             ]])
-            ->add('password', RepeatedType::class,[
-                'constraints'=> [
+            ->add('password', RepeatedType::class, [
+                'constraints' => [
                     new NotBlank(),
                     new Length(['min' => 8, 'minMessage' => 'Votre mot de passe doit contenir mininum 8 caractères'])
-                    ],
-                'type'=> PasswordType::class,
+                ],
+                'type' => PasswordType::class,
                 'invalid_message' => "Vous n'avez pas confirmé le même mot de passe",
                 'required' => $options['required']
             ]);
-
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'required'=> true,
+            'required' => true,
             'data_class' => null,
         ]);
     }

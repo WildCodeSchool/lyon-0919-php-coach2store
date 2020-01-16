@@ -36,9 +36,9 @@ class SecurityController extends AbstractController
                     'email' => $data['email']
                 ]);
 
-            if ($user){
+            if ($user) {
                 $form->addError(new FormError("L'émail est déja utilisé"));
-            }else{
+            } else {
                 $user = new User();
                 $user->setUsername($data['username']);
                 $user->setEmail($data['email']);
