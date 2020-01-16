@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Coach 2 Store{% endblock %}</title>
@@ -15,7 +15,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand"><img class="h-25 w-50" src="/images/c2s.png"></a>
+            <a class="navbar-brand" href="{{ path('catalog_home') }}"><img class="h-25 w-50" src="/images/c2s.png"></a>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item mr-5">
                     <a class="nav-link" href="#"><i class="fas fa-users mr-1"></i>Les coachs</a>
@@ -33,11 +33,10 @@
                     <a class="nav-link" href="#"><i class="fas fa-file-alt mr-1"></i>Inscription</a>
                 </li>
             </ul>
-            <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Rechercher..." aria-label="Search">
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i>
-                </button>
-            </form>
+            {{ form_start(searchBar, {'attr': {'class': 'form-inline'}}) }}
+            {{ form_widget(searchBar.searchBar, {'attr': {'class': 'form-control mr-sm-2'}}) }}
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+            {{ form_end(searchBar) }}
         </div>
     </nav>
 </header>

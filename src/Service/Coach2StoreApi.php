@@ -6,6 +6,7 @@ use Symfony\Component\HttpClient\HttpClient;
 
 class Coach2StoreApi
 {
+
     private $apiKey;
 
     public function __construct($apiKey)
@@ -20,36 +21,40 @@ class Coach2StoreApi
         ]]);
     }
 
-    public function getProductsByBrand($criteria)
+    public function getProductsByCriteria($criteria, $brand = null,  $supplier = null)
     {
         $client = $this->client();
-
-        $response = $client->request('GET', 'https://dev-api.coach2store.com/api/search?criteria=' . $criteria);
-
+        $url = 'https://dev-api.coach2store.com/api/search?criteria=' . urlencode($criteria);
+        if ($brand)
+            $url .= '&brand='. urlencode($brand);
+        if ($supplier)
+            $url .= '&supplier_name='. urlencode($supplier);
+        $response = $client->request('GET',  $url);
         $contents = $response->toArray();
-        $products = $contents['result']['facets'];
-
+        $products = $contents['result'];
         return $products;
     }
 
-    public function getProductsBySupplier($criteria)
-    {
-        $client = $this->client();
-        $response = $client->request('GET', 'https://dev-api.coach2store.com/api/search?criteria=' . $criteria);
-
-        $contents = $response->toArray();
-        $products = $contents['result']['facets']['supplier_name'];
-
-        return $products;
-    }
-
-    public function getProductsTop()
+    public function getProductsTop(): array
     {
         $client = $this->client();
         $response = $client->request('GET', 'https://dev-api.coach2store.com/api/top_products');
-
         $products = $response->toArray();
-
         return $products;
+    }
+
+    public static function simplifyProduct(array $product)
+    {
+        return $product['fields'];
+    }
+
+    public static function simplifyBrand(array $brand)
+    {
+        return $brand['value'];
+    }
+
+    public static function simplifySupplier(array $supplier)
+    {
+        return $supplier['value'];
     }
 }
