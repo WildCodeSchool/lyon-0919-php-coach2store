@@ -5,11 +5,16 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity(
+ *     fields={"email"},
+ *     message="L'email que vous avez indiqué est deja utilisé"
+ * )
  */
 class User implements UserInterface
 {
@@ -21,17 +26,18 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=90)
+     * @ORM\Column(type="string", length=90, nullable=true)
      */
     private $firstname;
 
     /**
-     * @ORM\Column(type="string", length=90)
+     * @ORM\Column(type="string", length=90, nullable=true)
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email()
      */
     private $email;
 
@@ -41,16 +47,10 @@ class User implements UserInterface
     private $gender;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min="8", minMessage="Votre mot de passe doit contenir mininum 8 caractères")
+     * @ORM\Column(type="string", length=255, nullable=false)
      *
      */
     private $password;
-
-    /**
-     * @Assert\EqualTo(propertyPath="password", message="Vous n'avez pas comfirmé le même mot de passe")
-     */
-    public $confirm_password;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -74,6 +74,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=90)
+     * @Assert\Length(max="25")
      */
     private $username;
 
@@ -140,7 +141,7 @@ class User implements UserInterface
         return $this->password;
     }
 
-    public function setPassword(string $password): self
+    public function setPassword($password): self
     {
         $this->password = $password;
 
