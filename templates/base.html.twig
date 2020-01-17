@@ -33,10 +33,12 @@
                     <a class="nav-link" href="#"><i class="fas fa-file-alt mr-1"></i>Inscription</a>
                 </li>
             </ul>
+            {% if searchBar is defined %}
             {{ form_start(searchBar, {'attr': {'class': 'form-inline'}}) }}
             {{ form_widget(searchBar.searchBar, {'attr': {'class': 'form-control mr-sm-2'}}) }}
             <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
             {{ form_end(searchBar) }}
+            {% endif %}
         </div>
     </nav>
 </header>

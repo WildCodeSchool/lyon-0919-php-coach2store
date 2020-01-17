@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Form\FilterProductsType;
 use App\Form\SearchProductsType;
 use App\Service\Coach2StoreApi;
+use mysql_xdevapi\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -74,6 +75,26 @@ class CatalogController extends AbstractController
             'productsTop' => $products,
             'searchBar' => $searchBar->createView(),
             'filter' => $filter->createView(),
-           ]);
+        ]);
+    }
+
+    /**
+     * @Route("/product/{id}", name="product_show")
+     * @param Coach2StoreApi $apiService
+     * @param string $id
+     * @return Response
+     */
+    public function show(Coach2StoreApi $apiService, string $id)
+    {
+        $result = $apiService->getProductsByCriteria($id);
+
+        if (isset($result['hits']['hit'])) {
+            $product = $result['hits']['hit'][0]['fields'];
+        } else {
+            throw new Exception("Produit introuvable", 404);
+        }
+        return $this->render('catalog/show.html.twig', [
+            'product' => $product,
+        ]);
     }
 }

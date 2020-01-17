@@ -21,17 +21,20 @@ class Coach2StoreApi
         ]]);
     }
 
-    public function getProductsByCriteria($criteria, $brand = null,  $supplier = null)
+    public function getProductsByCriteria($criteria, $brand = null, $supplier = null)
     {
         $client = $this->client();
         $url = 'https://dev-api.coach2store.com/api/search?criteria=' . urlencode($criteria);
-        if ($brand)
-            $url .= '&brand='. urlencode($brand);
-        if ($supplier)
-            $url .= '&supplier_name='. urlencode($supplier);
-        $response = $client->request('GET',  $url);
+        if ($brand) {
+            $url .= '&brand=' . urlencode($brand);
+        }
+        if ($supplier) {
+            $url .= '&supplier_name=' . urlencode($supplier);
+        }
+        $response = $client->request('GET', $url);
         $contents = $response->toArray();
         $products = $contents['result'];
+
         return $products;
     }
 

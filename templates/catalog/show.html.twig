@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid mt-4">
+        <div class="d-flex">
+            <div class="row">
+                <div class="card" style="width: 18rem;">
+                    {% for urlImage in product.url_image %}
+                    <img src="{{ urlImage }}"
+                         class="w-auto img-fluid card-img-top img-thumbnail"
+                         alt="product top">
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+{% endblock %}
