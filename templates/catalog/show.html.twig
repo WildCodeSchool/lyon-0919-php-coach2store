@@ -1,70 +1,52 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container-fluid mt-4">
-        <div class="d-flex">
-            <div class="d-flex flex-column">
-                <div class="row">
-                    <div class="offset-md-4"></div>
-                    <div class="col-md-4">
-                        <div class="card" style="width: 26rem;">
-                            {% for urlImage in product.url_image %}
-                                <img src="{{ urlImage }}"
-                                     class="w-auto img-fluid card-img-top img-thumbnail"
-                                     alt="product top">
-                            {% endfor %}
-                        </div>
-                    </div>
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <div class="d-flex flex-row w-50">
+                <div class="offset-md-2"></div>
+                {% for urlImage in product.url_image %}
+                    <img src="{{ urlImage }}"
+                         class="w-75 img-fluid img-thumbnail mx-auto"
+                         alt="product top"
+                         style="border: none">
+                {% endfor %}
+                <div class="offset-md-3"></div>
+                <div class="col-md-10">
+                    <h4>{{ product.display_name.0 }}</h4>
+                    <p><del>{{ product.price_no_rebate.0 }}</del> {{ product.price.0 }}</p>
+                    <p>Couleur : {{ product.colour.0 }}</p>
+                    <p>Taille : {{ product.size.0 }}</p>
+                    <button type="button" class="btn btn-primary btn-lg btn-block">Demandez conseil a un coach sur ce produit</button>
+                    <button type="button" class="btn btn-primary btn-lg btn-block">Acheter</button>
                 </div>
-                <div class="row">
-                    <div class="d-flex justify-content-around w-50">
-{#                        <div class="offset-md-2"></div>#}
-                        <div class="card">
-                            <div class="">
-                                <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a longer card with supporting text below as a natural
-                                        lead-in
-                                        to additional content. This content is a little bit longer.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="">
-                                <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a longer card with supporting text below as a natural
-                                        lead-in
-                                        to additional content. This content is a little bit longer.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="">
-                                <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a longer card with supporting text below as a natural
-                                        lead-in
-                                        to additional content.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="">
-                                <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a longer card with supporting text below as a natural
-                                        lead-in
-                                        to additional content.</p>
-                                </div>
-                            </div>
-                        </div>
-{#                        <div class="offset-md-2"></div>#}
-                    </div>
+            </div>
+        </div>
+        <div class="row d-flex mt-3">
+            <div class="offset-md-1"></div>
+            <h2 class="title-coach mb-5">Ses coachs vous recommandent ce produit</h2>
+        </div>
+        <div class="row d-flex w-50">
+            <div class="offset-md-2"></div>
+            <div class="card mr-2 col-md-3">
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Julien</h5>
+                    <a href="#" class="btn btn-primary">Voir la boutique</a>
+                </div>
+            </div>
+            <div class="card col-md-3">
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Alexis</h5>
+                    <a href="#" class="btn btn-primary">Voir la boutique</a>
+                </div>
+            </div>
+            <div class="card ml-2 col-md-3">
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Maxime</h5>
+                    <a href="#" class="btn btn-primary">Voir la boutique</a>
                 </div>
             </div>
         </div>
