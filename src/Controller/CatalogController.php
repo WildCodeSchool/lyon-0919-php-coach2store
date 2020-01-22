@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Form\FilterProductsType;
 use App\Form\SearchProductsType;
 use App\Service\Coach2StoreApi;
-use mysql_xdevapi\Exception;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -84,6 +84,7 @@ class CatalogController extends AbstractController
      * @param Coach2StoreApi $apiService
      * @param string $id
      * @return Response
+     * @throws Exception
      */
     public function show(Coach2StoreApi $apiService, string $id)
     {
@@ -96,21 +97,6 @@ class CatalogController extends AbstractController
         }
         return $this->render('catalog/show.html.twig', [
             'product' => $product,
-        ]);
-    }
-
-    public function searchBar(Request $request)
-    {
-        $criteria = null;
-        if ($searchParam = $request->query->get('search_products')) {
-            $criteria = $searchParam['searchBar'];
-        }
-        $searchBar = $this->createForm(SearchProductsType::class, ['searchBar' => $criteria], [
-            'method' => 'GET',
-            'action' => $this->generateUrl('catalog_home'),
-        ]);
-        return $this->render('searchBar.html.twig', [
-            'searchBar' => $searchBar->createView(),
         ]);
     }
 }
