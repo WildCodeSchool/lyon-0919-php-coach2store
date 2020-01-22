@@ -13,11 +13,21 @@
                 {% endfor %}
                 <div class="offset-md-3"></div>
                 <div class="col-md-10">
-                    <h4>{{ product.display_name.0 }}</h4>
-                    <p><del>{{ product.price_no_rebate.0 }}</del> {{ product.price.0 }}</p>
-                    <p>Couleur : {{ product.colour.0 }}</p>
-                    <p>Taille : {{ product.size.0 }}</p>
-                    <button type="button" class="btn btn-primary btn-lg btn-block">Demandez conseil a un coach sur ce produit</button>
+                    {% if product.display_name is defined %}
+                        <h4>{{ product.display_name.0 }}</h4>
+                    {% endif %}
+                    {% if product.price_no_rebate is defined %}
+                        <p><del>{{ product.price_no_rebate.0 }}</del> {{ product.price.0 }}</p>
+                    {% endif %}
+                    {% if product.color is defined %}
+                        <p>Couleur : {{ product.colour.0 }}</p>
+                    {% endif %}
+                    {% if product.size is defined %}
+                        <p>Taille : {{ product.size.0 }}</p>
+                    {% endif %}
+                    <button type="button" class="btn btn-primary btn-lg btn-block">Demandez conseil a un coach sur ce
+                        produit
+                    </button>
                     <button type="button" class="btn btn-primary btn-lg btn-block">Acheter</button>
                 </div>
             </div>
