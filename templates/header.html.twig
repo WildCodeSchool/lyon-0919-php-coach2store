@@ -15,13 +15,13 @@
                         <a class="nav-link" href="#"><i class="fas fa-comment mr-1"></i>Demander un conseil</a>
                     </li>
                     <li class="nav-item mr-5">
-                        <a class="nav-link" href="#"><i class="fas fa-shopping-bag mr-1"></i>Catalogue</a>
+                        <a class="nav-link" href="{{path('catalog_home')}}"><i class="fas fa-shopping-bag mr-1"></i>Catalogue</a>
                     </li>
                     <li class="nav-item mr-5">
                         <a class="nav-link" href="#"><i class="fas fa-user mr-1"></i>Connexion</a>
                     </li>
                     <li class="nav-item mr-5">
-                        <a class="nav-link" href="#"><i class="fas fa-file-alt mr-1"></i>Inscription</a>
+                        <a class="nav-link" href="{{ path('security_registration') }}"><i class="fas fa-file-alt mr-1"></i>Inscription</a>
                     </li>
                 </ul>
                 {{ form_start(searchBar, {'attr': {'class': 'form-inline'}}) }}
