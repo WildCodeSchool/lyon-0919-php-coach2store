@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <!-- Default form register -->
+        <form method="post" class="form-group col-md-6 offset-3 text-center border border-light p-5" action="#">
+            <h1>CREER UN COMPTE</h1>
+            <p class="mb-4">Saisissez vos coordonnées ci dessous et suivez le processus pour créer un nouveau compte
+                avec
+                Coach2store.</p>
+
+            {{ form_start(form) }}
+            {{ form_row(form.username, {'label': "Nom d'utilisateur", 'attr': {'placeholder': "Votre nom d'utilisateur", 'class': 'form-control'}}) }}
+            {{ form_row(form.email, {'label': 'Email', 'attr': {'placeholder': 'Votre email', 'class': 'form-control'}}) }}
+            {{ form_errors(form) }}
+            {{ form_row(form.password.first, {'label': 'Mot de passe', 'attr': {'placeholder': 'Votre mot de passe'}}) }}
+            <small class="form-text text-muted mb-3">8 caractères mininum</small>
+
+            {{ form_row(form.password.second, {'label': 'Confirmation du mot de passe', 'attr': {'placeholder': 'Répétez votre mot de passe'}}) }}
+            <button type="submit" class="btn my-4 btn-outline-primary">Inscription</button>
+            {{ form_end(form) }}
+        </form>
+    </div>
+{% endblock %}

@@ -30,6 +30,7 @@ class CatalogController extends AbstractController
         }
         $searchBar = $this->createForm(SearchProductsType::class, ['searchBar' => $criteria], [
             'method' => 'GET',
+            'action' => $this->generateUrl('catalog_home'),
         ]);
         $searchBar->handleRequest($request);
         $brands = [];
@@ -95,6 +96,21 @@ class CatalogController extends AbstractController
         }
         return $this->render('catalog/show.html.twig', [
             'product' => $product,
+        ]);
+    }
+
+    public function searchBar(Request $request)
+    {
+        $criteria = null;
+        if ($searchParam = $request->query->get('search_products')) {
+            $criteria = $searchParam['searchBar'];
+        }
+        $searchBar = $this->createForm(SearchProductsType::class, ['searchBar' => $criteria], [
+            'method' => 'GET',
+            'action' => $this->generateUrl('catalog_home'),
+        ]);
+        return $this->render('searchBar.html.twig', [
+            'searchBar' => $searchBar->createView(),
         ]);
     }
 }
