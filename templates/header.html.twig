@@ -11,18 +11,25 @@
                     <li class="nav-item mr-5">
                         <a class="nav-link" href="#"><i class="fas fa-users mr-1"></i>Les coachs</a>
                     </li>
-                    <li class="nav-item mr-5">
-                        <a class="nav-link" href="#"><i class="fas fa-comment mr-1"></i>Demander un conseil</a>
-                    </li>
-                    <li class="nav-item mr-5">
-                        <a class="nav-link" href="{{path('catalog_home')}}"><i class="fas fa-shopping-bag mr-1"></i>Catalogue</a>
-                    </li>
-                    <li class="nav-item mr-5">
-                        <a class="nav-link" href="#"><i class="fas fa-user mr-1"></i>Connexion</a>
-                    </li>
-                    <li class="nav-item mr-5">
-                        <a class="nav-link" href="{{ path('security_registration') }}"><i class="fas fa-file-alt mr-1"></i>Inscription</a>
-                    </li>
+                        <li class="nav-item mr-5">
+                            <a class="nav-link" href="{{path('catalog_home')}}"><i class="fas fa-shopping-bag mr-1"></i>Catalogue</a>
+                        </li>
+                    {% if app.user %}
+                        <li class="nav-item mr-5">
+                            <a class="nav-link" href="#"><i class="fas fa-comment mr-1"></i>Demander un conseil</a>
+                        </li>
+
+                        <li class="nav-item mr-5">
+                            <a class="nav-link" href="{{ path('app_logout') }}"><i class="fas fa-user mr-1"></i>Se déconnecter</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item mr-5">
+                            <a class="nav-link" href="{{ path('app_login') }}"><i class="fas fa-user mr-1"></i>Connexion</a>
+                        </li>
+                        <li class="nav-item mr-5">
+                            <a class="nav-link" href="{{ path('security_registration') }}"><i class="fas fa-file-alt mr-1"></i>Inscription</a>
+                        </li>
+                    {% endif %}
                 </ul>
                 {{ form_start(searchBar, {'attr': {'class': 'form-inline'}}) }}
                 {{ form_widget(searchBar.searchBar, {'attr': {'class': 'form-control mr-sm-2'}}) }}
